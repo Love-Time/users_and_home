@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_users
+      author: Daniil
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: bigserial
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: age
+                  type: smallint
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: password
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role
+                  type: varchar(255)
+                  constraints:
+                    checkConstraint: "(role)::text = ANY ((ARRAY ['USER'::character varying, 'ADMIN'::character varying])::text[])"

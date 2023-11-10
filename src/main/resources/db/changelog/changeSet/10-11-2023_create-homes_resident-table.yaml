@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_homes_resident
+      author: Daniil
+      changes:
+        - createTable:
+            tableName: homes_resident
+            columns:
+              - column:
+                  name: home_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_home_id
+                    referencedTableName: homes
+                    referencedColumnNames: id
+
+              - column:
+                  name: resident_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_resident_id
+                    referencedTableName: users
+                    referencedColumnNames: id
+        - addPrimaryKey:
+            tableName: homes_resident
+            columnNames: home_id, resident_id
+            constraintName: pk_homes_resident

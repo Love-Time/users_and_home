@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_home
+      author: Daniil
+      changes:
+        - createTable:
+            tableName: homes
+            columns:
+              - column:
+                  name: id
+                  type: bigserial
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: address
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: owner_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_owner_users_id
+                    referencedTableName: users
+                    referencedColumnNames: id
+                    nullable: false
